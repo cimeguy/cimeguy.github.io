@@ -461,7 +461,7 @@
     (function () {
       if (reduce) return;
       var c = document.getElementById('bg'), x = c.getContext('2d');
-      var words = ['token','attention','transformer','embedding','softmax','LLM','prompt','context','logits','decode','RLHF','MoE','reranking','recall','reward','top-k','<bos>','<eos>','▢ ▢ ▢'];
+      var words = ['token','attention','transformer','embedding','softmax','LLM','prompt','context','logits','decode','RLHF','MoE','reranking','recall','reward','top-k','<bos>','<eos>','陶喆','▢ ▢ ▢'];
       var parts = [], dpr = 1;
       function resize() { dpr = Math.min(window.devicePixelRatio || 1, 2); c.width = innerWidth * dpr; c.height = innerHeight * dpr; x.setTransform(dpr,0,0,dpr,0,0); }
       resize(); addEventListener('resize', resize);
