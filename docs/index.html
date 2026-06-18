@@ -120,7 +120,7 @@
     }
     .socials a.primary:hover { color: #241300; box-shadow: 0 8px 22px rgba(255,122,26,.32); }
     .proj:focus-visible, .socials a:focus-visible, footer a:focus-visible,
-    .featured:focus-visible, .more a:focus-visible, .cmdk-fab:focus-visible, .highlight:focus-visible {
+    .more a:focus-visible, .cmdk-fab:focus-visible, .highlight:focus-visible {
       outline: 2px solid var(--accent2); outline-offset: 3px;
     }
 
@@ -163,26 +163,6 @@
     }
     .lede b { color: var(--ink); font-weight: 600; }
     .lede .arc { color: var(--accent); }
-
-    /* Featured 代表作 */
-    .featured-wrap { margin-bottom: 44px; }
-    .featured {
-      display: block; position: relative; border-radius: 16px; padding: 30px 30px 26px;
-      border: 1px solid var(--accent); overflow: hidden;
-      background: linear-gradient(135deg, rgba(255,138,51,.10), rgba(63,233,207,.06)),
-                  linear-gradient(180deg, var(--card), var(--bg2));
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .25s;
-    }
-    .featured:hover { transform: translateY(-4px); box-shadow: 0 22px 54px rgba(0,0,0,.5); }
-    .featured .badge {
-      font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: .5px;
-    }
-    .featured .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
-    .featured h3 { font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -.4px; }
-    .featured .feat-tagline { color: var(--ink); font-size: clamp(15px, 2.4vw, 18px); margin-top: 12px; max-width: 760px; }
-    .featured .feat-desc { color: var(--muted); font-size: 14px; margin-top: 10px; max-width: 760px; }
-    .featured .arrow-inline { color: var(--accent); font-family: var(--mono); }
 
     .label {
       font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink);
@@ -235,7 +215,7 @@
     .idx { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
     .proj .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 4px; }
     .proj h3 { font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
-    .proj .lang, .featured .lang {
+    .proj .lang {
       font-family: var(--mono); font-size: 11px; color: var(--muted);
       border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; white-space: nowrap;
     }
@@ -332,47 +312,42 @@
 
     <main>
 
-      <a class="highlight" href="https://bird-bench.github.io/" target="_blank" rel="noopener">
+      <a class="highlight" id="featured" href="https://bird-bench.github.io/" target="_blank" rel="noopener">
         <span class="hl-tag">Benchmark</span>
         <span class="hl-text">主导研发 <b>JD-UNION-Text2sql-32B</b>，登上 <b>BIRD (Text-to-SQL) 单模型</b>榜单 —— 生成式大模型方向的代表作。</span>
         <span class="hl-go">查看榜单 ↗</span>
       </a>
 
       <p class="lede">
-        一条从安全到智能的主线：<span class="arc">网络安全 → 对抗机器学习 → 内容安全 → 生成式大模型</span>。
+        一条从安全到智能的主线：<span class="arc">网络安全 → AI for 安全 → 大模型</span>。
         <b>下面是这条路上留下的一些项目。</b>
       </p>
 
-      <section class="featured-wrap" id="featured" aria-label="代表作">
-        <h2 class="label">featured <span class="count">★</span></h2>
-        <a class="featured" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
-          <span class="badge">★ 代表作 · LLM / Agent 工具</span>
-          <div class="top"><h3>cc-wexin-codex-plus</h3><span class="lang">TypeScript</span></div>
-          <p class="feat-tagline">让对话式 Codex 拥有可重启、可持久化的长会话——把“对话即代理”做成真正经得起长任务的工具。<span class="arrow-inline"> ↗</span></p>
-          <p class="feat-desc">为 cc-wexin codex 增加会话重启与状态持久化能力：断点续聊、上下文落盘，解决长任务中会话中断后上下文丢失的痛点。</p>
-        </a>
-      </section>
-
       <div class="group">
-        <h2 class="label">tools &amp; apps <span class="count">(4)</span></h2>
+        <h2 class="label">tools &amp; apps <span class="count">(5)</span></h2>
         <div class="grid">
-          <a class="proj" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
+          <a class="proj" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
             <span class="idx" aria-hidden="true">[01]</span>
+            <div class="top"><h3>cc-wexin-codex-plus</h3><span class="lang">TypeScript</span></div>
+            <p>为对话式 Codex 增加会话重启与状态持久化：断点续聊、上下文落盘，解决长任务中会话中断后上下文丢失的痛点。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
+            <span class="idx" aria-hidden="true">[02]</span>
             <div class="top"><h3>DT-in-the-desktop</h3><span class="lang">JavaScript</span></div>
             <p>打造陶喆主题 macOS 桌面宠物：点击换图、随机播放台词与音频，支持素材管理、人物抠图与缩放。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/ClipFlow" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[02]</span>
+            <span class="idx" aria-hidden="true">[03]</span>
             <div class="top"><h3>ClipFlow</h3><span class="lang">macOS</span></div>
             <p>实现 macOS 剪贴板历史管理器，支持 Markdown 导出与 BibTeX 检索，加速科研与写作取用。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/duplicate-tab-detector" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[03]</span>
+            <span class="idx" aria-hidden="true">[04]</span>
             <div class="top"><h3>duplicate-tab-detector</h3><span class="lang">JavaScript</span></div>
             <p>开发 Chrome 扩展，自动检测并一键清理重复标签页。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/GradeSpider" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[04]</span>
+            <span class="idx" aria-hidden="true">[05]</span>
             <div class="top"><h3>GradeSpider</h3><span class="lang">Python</span></div>
             <p>编写高校教务系统成绩爬虫，自动登录抓取并汇总成绩。</p>
           </a>
@@ -383,22 +358,22 @@
         <h2 class="label">security <span class="count">(4)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/Wedjat" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[05]</span>
+            <span class="idx" aria-hidden="true">[06]</span>
             <div class="top"><h3>Wedjat</h3><span class="lang">Jupyter</span></div>
             <p>提出面向规避攻击的鲁棒恶意流量检测方法，提升对抗样本下的检出稳定性。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/Simulation_and_VulnerabilityDetection__IndustrialControlSystem" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[06]</span>
+            <span class="idx" aria-hidden="true">[07]</span>
             <div class="top"><h3>ICS 仿真与漏洞检测</h3><span class="lang">Python</span></div>
             <p>搭建 SCADA / Modbus 工控系统仿真环境，并在其上实现漏洞检测。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/ML_for_ContentSecurity" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[07]</span>
+            <span class="idx" aria-hidden="true">[08]</span>
             <div class="top"><h3>ML_for_ContentSecurity</h3><span class="lang">Python</span></div>
             <p>构建面向内容安全的机器学习工具集，覆盖检测与分类等任务。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/WebSite_CyperspaceSecurity" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[08]</span>
+            <span class="idx" aria-hidden="true">[09]</span>
             <div class="top"><h3>网络空间安全学习平台</h3><span class="lang">PHP</span></div>
             <p>搭建集论坛、在线考试与文件共享于一体的网络安全学习平台。</p>
           </a>
@@ -409,12 +384,12 @@
         <h2 class="label">machine learning <span class="count">(2)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/ML_for_Game-GoldenPoint" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[09]</span>
+            <span class="idx" aria-hidden="true">[10]</span>
             <div class="top"><h3>Golden Point</h3><span class="lang">Python</span></div>
             <p>用机器学习设计多人“黄金点”博弈策略，在重复博弈中逼近最优出价。</p>
           </a>
           <a class="proj" href="https://github.com/cimeguy/SpamFliter" target="_blank" rel="noopener">
-            <span class="idx" aria-hidden="true">[10]</span>
+            <span class="idx" aria-hidden="true">[11]</span>
             <div class="top"><h3>SpamFilter</h3><span class="lang">Python</span></div>
             <p>实现朴素贝叶斯 / ID3 / TF-IDF 三种垃圾信息过滤算法并对比效果。</p>
           </a>
@@ -524,7 +499,7 @@
       if (!overlay || !input || !out) return;
       var hint = 'type <b>help</b> and hit enter · esc to close';
       var projects = Array.prototype.map.call(
-        document.querySelectorAll('.featured, .proj'),
+        document.querySelectorAll('.proj'),
         function (a) { return { name: a.querySelector('h3').textContent.trim(), url: a.href }; }
       );
       function show() { overlay.classList.add('on'); overlay.setAttribute('aria-hidden', 'false'); input.value = ''; out.innerHTML = hint; setTimeout(function () { input.focus(); }, 0); }
