@@ -17,6 +17,8 @@
       --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    @keyframes spin { to { --angle: 360deg; } }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, "PingFang SC", "Segoe UI", system-ui, sans-serif;
@@ -98,20 +100,18 @@
 
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
     .proj {
-      position: relative; display: block; border: 1px solid var(--line); border-radius: 14px;
-      padding: 22px 22px 20px; background: linear-gradient(180deg, var(--card), var(--bg2));
+      position: relative; display: block; border-radius: 15px;
+      padding: 22px 22px 20px;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(180deg, var(--card), var(--bg2)) padding-box,
+        conic-gradient(from var(--angle), transparent 0deg, var(--accent) 60deg, var(--accent2) 130deg, transparent 200deg, transparent 360deg) border-box;
       overflow: hidden; will-change: transform; transform-style: preserve-3d;
       opacity: 0; transform: translateY(16px);
-      transition: border-color .2s, transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .25s, opacity .5s ease;
+      transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .25s, opacity .5s ease;
+      animation: spin 4.5s linear infinite;
     }
     .proj.in { opacity: 1; transform: translateY(0); }
-    /* 顶部生长的强调线 */
-    .proj::before {
-      content: ""; position: absolute; top: 0; left: 0; height: 2px; width: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
-    }
-    .proj:hover::before { transform: scaleX(1); }
     /* 悬停滑入的箭头 */
     .arrow {
       position: absolute; top: 18px; right: 18px; font-family: var(--mono);
@@ -120,11 +120,11 @@
     }
     .proj:hover .arrow { opacity: 1; transform: translate(0, 0); }
     .proj::after {
-      content: ""; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
+      content: ""; position: absolute; inset: 0; border-radius: 13px; pointer-events: none;
       background: radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,138,51,.16), transparent 45%);
       opacity: 0; transition: opacity .25s;
     }
-    .proj:hover { border-color: var(--accent); box-shadow: 0 18px 38px rgba(0,0,0,.5); }
+    .proj:hover { animation-duration: 1.8s; box-shadow: 0 18px 38px rgba(0,0,0,.5); }
     .proj:hover::after { opacity: 1; }
     .idx { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
     .proj .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 4px; }
@@ -141,13 +141,24 @@
     }
     footer a { color: var(--accent); }
 
+    /* 跟随鼠标的辉光点 */
+    #cursor {
+      position: fixed; top: 0; left: 0; width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,138,51,.9), rgba(63,233,207,.5) 60%, transparent 70%);
+      pointer-events: none; z-index: 9999; mix-blend-mode: screen;
+      transform: translate(-50%, -50%); transition: width .2s, height .2s, opacity .3s;
+      opacity: 0; filter: blur(2px);
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      body::after, header h1, .eyebrow .blink, .tagline .cursor { animation: none; }
+      body::after, header h1, .eyebrow .blink, .tagline .cursor, .proj { animation: none; }
       .proj { opacity: 1; transform: none; }
+      #cursor { display: none; }
     }
   </style>
 </head>
 <body>
+  <div id="cursor"></div>
   <div class="wrap">
 
     <header>
@@ -248,6 +259,7 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // 滚动渐显（带错位）
     var io = new IntersectionObserver(function (entries) {
@@ -261,8 +273,28 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.proj').forEach(function (el) { io.observe(el); });
 
-    // 卡片：注入箭头 + 鼠标辉光 + 3D 倾斜
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // 跟随鼠标的辉光点（带平滑跟随）
+    if (!reduce) {
+      var dot = document.getElementById('cursor');
+      var tx = 0, ty = 0, cx = 0, cy = 0, shown = false;
+      window.addEventListener('mousemove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!shown) { cx = tx; cy = ty; shown = true; dot.style.opacity = '1'; }
+      });
+      window.addEventListener('mouseout', function (e) {
+        if (!e.relatedTarget) dot.style.opacity = '0';
+      });
+      // 经过可点击元素时放大
+      document.querySelectorAll('a, .proj').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { dot.style.width = '46px'; dot.style.height = '46px'; });
+        el.addEventListener('mouseleave', function () { dot.style.width = '26px'; dot.style.height = '26px'; });
+      });
+      (function loop() {
+        cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
+        dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+        requestAnimationFrame(loop);
+      })();
+    }
     document.querySelectorAll('.proj').forEach(function (card) {
       var a = document.createElement('span');
       a.className = 'arrow'; a.textContent = '↗';
