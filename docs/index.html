@@ -175,17 +175,19 @@
     @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
     .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0 0 44px; position: relative; }
-    .tl-step { position: relative; padding: 0 18px 0 0; }
-    .tl-step .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); margin-bottom: 12px; }
-    .tl-step::before { content: ""; position: absolute; left: 6px; top: 6px; right: -6px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: .4; }
-    .tl-step:last-child::before { display: none; }
+    .tl-step { position: relative; padding: 0 26px 0 0; }
+    .tl-step .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255,138,51,.15), 0 0 12px var(--accent); margin-bottom: 14px; }
+    .tl-step::before { content: ""; position: absolute; left: 17px; top: 6px; right: 8px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: .85; }
+    .tl-step::after { content: "›"; position: absolute; right: 2px; top: -5px; color: var(--accent2); font-family: var(--mono); font-size: 18px; line-height: 1; opacity: .9; }
+    .tl-step:last-child::before, .tl-step:last-child::after { display: none; }
     .tl-step h4 { font-family: var(--mono); font-size: 14px; color: var(--ink); margin-bottom: 6px; }
     .tl-step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
     .tl-step .tag { font-family: var(--mono); font-size: 11px; color: var(--accent2); }
     @media (max-width: 640px) {
       .timeline { grid-template-columns: 1fr; gap: 22px; }
-      .tl-step { padding: 0 0 0 18px; }
-      .tl-step::before { left: 5px; top: 12px; bottom: -22px; right: auto; width: 2px; height: auto; }
+      .tl-step { padding: 0 0 0 26px; }
+      .tl-step::before { left: 6px; top: 16px; bottom: -22px; right: auto; width: 2px; height: auto; }
+      .tl-step::after { content: "⌄"; left: 2px; right: auto; top: auto; bottom: -20px; }
     }
 
     .label {
