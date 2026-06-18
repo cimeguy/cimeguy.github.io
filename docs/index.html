@@ -141,24 +141,13 @@
     }
     footer a { color: var(--accent); }
 
-    /* 跟随鼠标的辉光点 */
-    #cursor {
-      position: fixed; top: 0; left: 0; width: 26px; height: 26px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,138,51,.9), rgba(63,233,207,.5) 60%, transparent 70%);
-      pointer-events: none; z-index: 9999; mix-blend-mode: screen;
-      transform: translate(-50%, -50%); transition: width .2s, height .2s, opacity .3s;
-      opacity: 0; filter: blur(2px);
-    }
-
     @media (prefers-reduced-motion: reduce) {
       body::after, header h1, .eyebrow .blink, .tagline .cursor, .proj { animation: none; }
       .proj { opacity: 1; transform: none; }
-      #cursor { display: none; }
     }
   </style>
 </head>
 <body>
-  <div id="cursor"></div>
   <div class="wrap">
 
     <header>
@@ -273,28 +262,7 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.proj').forEach(function (el) { io.observe(el); });
 
-    // 跟随鼠标的辉光点（带平滑跟随）
-    if (!reduce) {
-      var dot = document.getElementById('cursor');
-      var tx = 0, ty = 0, cx = 0, cy = 0, shown = false;
-      window.addEventListener('mousemove', function (e) {
-        tx = e.clientX; ty = e.clientY;
-        if (!shown) { cx = tx; cy = ty; shown = true; dot.style.opacity = '1'; }
-      });
-      window.addEventListener('mouseout', function (e) {
-        if (!e.relatedTarget) dot.style.opacity = '0';
-      });
-      // 经过可点击元素时放大
-      document.querySelectorAll('a, .proj').forEach(function (el) {
-        el.addEventListener('mouseenter', function () { dot.style.width = '46px'; dot.style.height = '46px'; });
-        el.addEventListener('mouseleave', function () { dot.style.width = '26px'; dot.style.height = '26px'; });
-      });
-      (function loop() {
-        cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
-        dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
-        requestAnimationFrame(loop);
-      })();
-    }
+    // 卡片：注入箭头 + 鼠标辉光 + 3D 倾斜
     document.querySelectorAll('.proj').forEach(function (card) {
       var a = document.createElement('span');
       a.className = 'arrow'; a.textContent = '↗';
