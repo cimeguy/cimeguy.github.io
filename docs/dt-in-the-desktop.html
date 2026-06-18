@@ -138,13 +138,13 @@
           <a href="index.html">← 回到作品集</a>
         </div>
       </div>
-      <div class="pet-stage">
-        <img src="assets/dt-taozhe.png" alt="陶喆桌面宠物" width="230" />
+      <div class="pet-stage" id="pet-stage" title="点我换造型">
+        <img id="pet" src="assets/dt/dt1.png" alt="陶喆桌面宠物" width="230" />
       </div>
     </header>
 
     <div class="features">
-      <div class="feat"><div class="ic">🖱️</div><h3>点击换图</h3><p>点一下就切换陶喆的不同造型，像逗一只电子宠物。</p></div>
+      <div class="feat"><div class="ic">🖱️</div><h3>点击换图</h3><p>点一下就切换陶喆的不同造型。</p></div>
       <div class="feat"><div class="ic">🔊</div><h3>台词 / 音频</h3><p>随机播放语音台词与音频片段，桌面也能开演唱会。</p></div>
       <div class="feat"><div class="ic">🗂️</div><h3>素材管理</h3><p>自由导入、整理图片与音频素材，自定义你的宠物内容。</p></div>
       <div class="feat"><div class="ic">✂️</div><h3>抠图 / 缩放</h3><p>内置人物抠图与缩放，把任意素材处理成透明立绘。</p></div>
@@ -163,6 +163,31 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 老大不停换造型：自动轮播 + 点击切换
+    (function () {
+      var imgs = ['dt1','dt2','dt3','dt4','dt5','dt6','dt7','dt8'].map(function (n) { return 'assets/dt/' + n + '.png'; });
+      var pet = document.getElementById('pet'), stage = document.getElementById('pet-stage');
+      if (!pet || !stage) return;
+      imgs.forEach(function (src) { var im = new Image(); im.src = src; }); // 预加载
+      var i = 0;
+      function swap(next) {
+        i = (next === undefined) ? (i + 1) % imgs.length : next % imgs.length;
+        pet.style.opacity = '0';
+        setTimeout(function () { pet.src = imgs[i]; pet.style.opacity = ''; }, 130);
+      }
+      pet.style.transition = 'opacity .13s';
+      stage.style.cursor = 'pointer';
+      stage.addEventListener('click', function () { swap(); });
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        var timer = setInterval(function () { if (!document.hidden) swap(); }, 1800);
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) { clearInterval(timer); timer = null; }
+          else if (!timer) { timer = setInterval(function () { if (!document.hidden) swap(); }, 1800); }
+        });
+      }
+    })();
   </script>
 </body>
 </html>
