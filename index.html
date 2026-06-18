@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cimeguy · 个人主页</title>
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --gold: #f6c000;
+      --orange: #ff8c1a;
+      --text: #e8e8ea;
+      --muted: #9a9aa0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { color: var(--gold); }
+
+    /* 对角斜分背景 */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(
+        118deg,
+        #0d0d0d 0%, #131211 46%,
+        var(--gold) 46%, var(--gold) 47.4%,
+        var(--orange) 47.4%, #ff7a18 100%
+      );
+    }
+    .hero-inner { max-width: 620px; }
+    .hello { color: var(--gold); letter-spacing: 4px; font-size: 13px; text-transform: uppercase; }
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 84px);
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 10px 0 6px;
+      color: #fff;
+    }
+    .hero h1 .slash { color: var(--orange); }
+    .hero .tagline { font-size: clamp(15px, 2.4vw, 20px); color: rgba(255,255,255,.82); }
+    .cta { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 14px;
+      transition: transform .12s ease, background .15s;
+    }
+    .btn.primary { background: var(--orange); color: #fff; }
+    .btn.primary:hover { background: var(--gold); color: var(--black); transform: translateY(-2px); }
+    .btn.ghost { border: 1.5px solid rgba(255,255,255,.4); color: #fff; }
+    .btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    section { padding: 80px 8vw; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 8px;
+    }
+    section h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 20px; color: #fff; }
+    .about p { color: var(--muted); max-width: 640px; }
+
+    .cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      background: #15151a; border: 1px solid #232329; border-radius: 14px;
+      padding: 22px; transition: transform .15s ease, border-color .15s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--orange); }
+    .card h3 { color: #fff; margin-bottom: 8px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+    .card .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 12px; color: var(--gold); background: rgba(246,192,0,.12); padding: 3px 10px; border-radius: 999px; }
+
+    .links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .links a { font-size: 15px; }
+
+    footer { text-align: center; padding: 40px 8vw; color: var(--muted); font-size: 13px; border-top: 1px solid #1c1c22; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hello">Hello, 我是</p>
+      <h1>cimeguy<span class="slash"> /</span></h1>
+      <p class="tagline">一句话介绍你自己 —— 比如「热爱折腾的开发者，喜欢把想法做成能跑的东西」。</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">看看作品</a>
+        <a class="btn ghost" href="https://github.com/cimeguy" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="about">
+    <p class="section-title">About</p>
+    <h2>关于我</h2>
+    <p>
+      在这里写几句关于你的话：你做什么、擅长什么、最近在折腾什么。
+      保持简短真诚就好。可以提一下你的方向（前端 / 后端 / 算法 / 数据等）和兴趣。
+    </p>
+  </section>
+
+  <section id="projects">
+    <p class="section-title">Projects</p>
+    <h2>我的项目</h2>
+    <div class="cards">
+      <a class="card" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
+        <h3>DT-in-the-desktop</h3>
+        <p>一个 macOS 桌面宠物：点击换图、随机播放音频、头顶气泡显示台词，支持素材管理、人物抠图与缩放。</p>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">macOS</span></div>
+      </a>
+      <a class="card" href="#">
+        <h3>项目二</h3>
+        <p>替换成你的另一个项目，写一句它解决了什么问题。</p>
+        <div class="tags"><span class="tag">标签</span></div>
+      </a>
+      <a class="card" href="#">
+        <h3>项目三</h3>
+        <p>再放一个。没有就先删掉这张卡片。</p>
+        <div class="tags"><span class="tag">标签</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-title">Contact</p>
+    <h2>找到我</h2>
+    <div class="links">
+      <a href="https://github.com/cimeguy" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="#" target="_blank" rel="noopener">微博 / X</a>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> cimeguy · Built with GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
