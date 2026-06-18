@@ -205,7 +205,8 @@
       position: relative; display: block; border-radius: 15px;
       padding: 22px 22px 20px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), var(--bg2));
+      background: linear-gradient(180deg, rgba(60,65,79,.55), rgba(43,47,58,.35));
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       overflow: hidden;
       opacity: 0; transform: translateY(16px);
       transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .25s, opacity .5s ease, border-color .25s;
