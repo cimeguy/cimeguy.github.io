@@ -256,6 +256,20 @@
     }
     .proj:hover .dt-pet { transform: translateY(-2px) rotate(2deg); opacity: 1; }
 
+    /* 大作：陶喆悬浮在卡片上 */
+    .proj.feature { grid-column: 1 / -1; overflow: visible; padding-right: 200px; }
+    .proj.feature .dt-pet {
+      right: 26px; bottom: 0; width: 150px; opacity: 1;
+      transform: none; transition: scale .3s cubic-bezier(.2,.7,.2,1), filter .3s;
+      filter: drop-shadow(0 16px 26px rgba(0,0,0,.55));
+      animation: petFloat 3.4s ease-in-out infinite alternate;
+    }
+    .proj.feature:hover .dt-pet { scale: 1.07; filter: drop-shadow(0 22px 34px rgba(255,138,51,.4)); }
+    @keyframes petFloat {
+      0%   { transform: translateY(0) rotate(-3deg); }
+      100% { transform: translateY(-16px) rotate(3deg); }
+    }
+
     .more { margin-top: 40px; }
     .more a {
       font-family: var(--mono); font-size: 13px; color: var(--muted);
@@ -313,7 +327,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      body::after, .eyebrow .blink, .tagline .cursor, .proj, .proj:hover::before { animation: none; }
+      body::after, .eyebrow .blink, .tagline .cursor, .proj, .proj:hover::before, .proj.feature .dt-pet { animation: none; }
       .proj { opacity: 1; transform: none; }
       #bg { display: none; }
     }
@@ -368,11 +382,11 @@
       <div class="group">
         <h2 class="label">大作 <span class="count">(1)</span></h2>
         <div class="grid">
-          <a class="proj" href="dt-in-the-desktop.html" rel="noopener">
+          <a class="proj feature" href="dt-in-the-desktop.html" rel="noopener">
             <span class="idx" aria-hidden="true">[01]</span>
             <div class="top"><h3>DT-in-the-desktop</h3><span class="lang">JavaScript</span></div>
             <p>打造陶喆主题 macOS 桌面宠物：点击换图、随机播放台词与音频，支持素材管理、人物抠图与缩放。</p>
-            <img class="dt-pet" src="assets/dt-taozhe.png" alt="陶喆桌面宠物" width="104" loading="lazy" />
+            <img class="dt-pet" src="assets/dt-taozhe.png" alt="陶喆桌面宠物" width="140" loading="lazy" />
           </a>
         </div>
       </div>
