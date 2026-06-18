@@ -97,6 +97,9 @@
       margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
     }
     .label::before { content: "//"; color: var(--accent); }
+    .label .count { color: var(--accent2); font-size: 12px; }
+    .group { margin-top: 48px; }
+    .group:first-of-type { margin-top: 0; }
 
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
     .proj {
@@ -167,82 +170,91 @@
     </header>
 
     <section>
-      <p class="label">projects</p>
-      <div class="grid">
 
-        <a class="proj" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
-          <span class="idx">[01]</span>
-          <div class="top"><h3>DT-in-the-desktop</h3><span class="lang">JavaScript</span></div>
-          <p>陶喆主题 macOS 桌面宠物：点击换图、随机播放音频、气泡台词，支持素材管理、人物抠图与缩放。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/ClipFlow" target="_blank" rel="noopener">
-          <span class="idx">[02]</span>
-          <div class="top"><h3>ClipFlow</h3><span class="lang">macOS</span></div>
-          <p>macOS 剪贴板历史管理器，支持 Markdown 导出与 BibTeX 检索。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/duplicate-tab-detector" target="_blank" rel="noopener">
-          <span class="idx">[03]</span>
-          <div class="top"><h3>duplicate-tab-detector</h3><span class="lang">JavaScript</span></div>
-          <p>自动检测并清理重复标签页的 Chrome 扩展。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
-          <span class="idx">[04]</span>
-          <div class="top"><h3>cc-wexin-codex-plus</h3><span class="lang">TypeScript</span></div>
-          <p>为 cc-wexin codex 增加会话重启与持久化能力的增强版。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/Wedjat" target="_blank" rel="noopener">
-          <span class="idx">[05]</span>
-          <div class="top"><h3>Wedjat</h3><span class="lang">Jupyter</span></div>
-          <p>面向规避攻击的鲁棒恶意流量检测方法。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/Simulation_and_VulnerabilityDetection__IndustrialControlSystem" target="_blank" rel="noopener">
-          <span class="idx">[06]</span>
-          <div class="top"><h3>ICS 仿真与漏洞检测</h3><span class="lang">Python</span></div>
-          <p>模拟 SCADA / Modbus 工控系统并进行漏洞检测。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/ML_for_ContentSecurity" target="_blank" rel="noopener">
-          <span class="idx">[07]</span>
-          <div class="top"><h3>ML_for_ContentSecurity</h3><span class="lang">Python</span></div>
-          <p>面向内容安全的 AI 工具集合。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/ML_for_Game-GoldenPoint" target="_blank" rel="noopener">
-          <span class="idx">[08]</span>
-          <div class="top"><h3>Golden Point</h3><span class="lang">Python</span></div>
-          <p>基于机器学习的多人黄金点博弈游戏。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/SpamFliter" target="_blank" rel="noopener">
-          <span class="idx">[09]</span>
-          <div class="top"><h3>SpamFilter</h3><span class="lang">Python</span></div>
-          <p>实现朴素贝叶斯、ID3 与 TF-IDF 的垃圾信息过滤。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/GradeSpider" target="_blank" rel="noopener">
-          <span class="idx">[10]</span>
-          <div class="top"><h3>GradeSpider</h3><span class="lang">Python</span></div>
-          <p>高校教务系统成绩爬虫。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/WebSite_CyperspaceSecurity" target="_blank" rel="noopener">
-          <span class="idx">[11]</span>
-          <div class="top"><h3>网络空间安全学习平台</h3><span class="lang">PHP</span></div>
-          <p>集论坛、在线考试与文件共享于一体的学习平台。</p>
-        </a>
-
-        <a class="proj" href="https://github.com/cimeguy/ExperimentsCodes_ProfessionalCourses" target="_blank" rel="noopener">
-          <span class="idx">[12]</span>
-          <div class="top"><h3>专业课实验代码</h3><span class="lang">C++</span></div>
-          <p>涵盖软件安全、数据结构与操作系统仿真等课程实验。</p>
-        </a>
-
+      <div class="group">
+        <p class="label">tools &amp; apps <span class="count">(5)</span></p>
+        <div class="grid">
+          <a class="proj" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
+            <span class="idx">[01]</span>
+            <div class="top"><h3>DT-in-the-desktop</h3><span class="lang">JavaScript</span></div>
+            <p>陶喆主题 macOS 桌面宠物：点击换图、随机播放音频、气泡台词，支持素材管理、人物抠图与缩放。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/ClipFlow" target="_blank" rel="noopener">
+            <span class="idx">[02]</span>
+            <div class="top"><h3>ClipFlow</h3><span class="lang">macOS</span></div>
+            <p>macOS 剪贴板历史管理器，支持 Markdown 导出与 BibTeX 检索。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/duplicate-tab-detector" target="_blank" rel="noopener">
+            <span class="idx">[03]</span>
+            <div class="top"><h3>duplicate-tab-detector</h3><span class="lang">JavaScript</span></div>
+            <p>自动检测并清理重复标签页的 Chrome 扩展。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
+            <span class="idx">[04]</span>
+            <div class="top"><h3>cc-wexin-codex-plus</h3><span class="lang">TypeScript</span></div>
+            <p>为 cc-wexin codex 增加会话重启与持久化能力的增强版。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/GradeSpider" target="_blank" rel="noopener">
+            <span class="idx">[05]</span>
+            <div class="top"><h3>GradeSpider</h3><span class="lang">Python</span></div>
+            <p>高校教务系统成绩爬虫。</p>
+          </a>
+        </div>
       </div>
+
+      <div class="group">
+        <p class="label">security <span class="count">(4)</span></p>
+        <div class="grid">
+          <a class="proj" href="https://github.com/cimeguy/Wedjat" target="_blank" rel="noopener">
+            <span class="idx">[06]</span>
+            <div class="top"><h3>Wedjat</h3><span class="lang">Jupyter</span></div>
+            <p>面向规避攻击的鲁棒恶意流量检测方法。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/Simulation_and_VulnerabilityDetection__IndustrialControlSystem" target="_blank" rel="noopener">
+            <span class="idx">[07]</span>
+            <div class="top"><h3>ICS 仿真与漏洞检测</h3><span class="lang">Python</span></div>
+            <p>模拟 SCADA / Modbus 工控系统并进行漏洞检测。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/ML_for_ContentSecurity" target="_blank" rel="noopener">
+            <span class="idx">[08]</span>
+            <div class="top"><h3>ML_for_ContentSecurity</h3><span class="lang">Python</span></div>
+            <p>面向内容安全的 AI 工具集合。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/WebSite_CyperspaceSecurity" target="_blank" rel="noopener">
+            <span class="idx">[09]</span>
+            <div class="top"><h3>网络空间安全学习平台</h3><span class="lang">PHP</span></div>
+            <p>集论坛、在线考试与文件共享于一体的学习平台。</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="label">machine learning <span class="count">(2)</span></p>
+        <div class="grid">
+          <a class="proj" href="https://github.com/cimeguy/ML_for_Game-GoldenPoint" target="_blank" rel="noopener">
+            <span class="idx">[10]</span>
+            <div class="top"><h3>Golden Point</h3><span class="lang">Python</span></div>
+            <p>基于机器学习的多人黄金点博弈游戏。</p>
+          </a>
+          <a class="proj" href="https://github.com/cimeguy/SpamFliter" target="_blank" rel="noopener">
+            <span class="idx">[11]</span>
+            <div class="top"><h3>SpamFilter</h3><span class="lang">Python</span></div>
+            <p>实现朴素贝叶斯、ID3 与 TF-IDF 的垃圾信息过滤。</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="label">coursework <span class="count">(1)</span></p>
+        <div class="grid">
+          <a class="proj" href="https://github.com/cimeguy/ExperimentsCodes_ProfessionalCourses" target="_blank" rel="noopener">
+            <span class="idx">[12]</span>
+            <div class="top"><h3>专业课实验代码</h3><span class="lang">C++</span></div>
+            <p>涵盖软件安全、数据结构与操作系统仿真等课程实验。</p>
+          </a>
+        </div>
+      </div>
+
     </section>
 
     <footer>
