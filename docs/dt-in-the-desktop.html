@@ -166,7 +166,7 @@
 
     // 老大不停换造型：自动轮播 + 点击切换
     (function () {
-      var imgs = ['dt1','dt2','dt3','dt4','dt5','dt6','dt7','dt8'].map(function (n) { return 'assets/dt/' + n + '.png'; });
+      var imgs = ['dt1','dt2','dt3','dt4','dt5','dt7'].map(function (n) { return 'assets/dt/' + n + '.png'; });
       var pet = document.getElementById('pet'), stage = document.getElementById('pet-stage');
       if (!pet || !stage) return;
       imgs.forEach(function (src) { var im = new Image(); im.src = src; }); // 预加载
