@@ -91,6 +91,18 @@
       box-shadow: 0 6px 18px rgba(255,122,26,.18);
     }
 
+    .about {
+      max-width: 680px; margin-top: 30px;
+      padding: 22px 26px; border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--bg2));
+    }
+    .about p { color: var(--muted); font-size: 15px; }
+    .about p + p { margin-top: 12px; }
+    .about .zh { color: var(--ink); }
+    .about .en { font-family: var(--mono); font-size: 13.5px; }
+    .about b { color: var(--accent); font-weight: 600; }
+
     section { padding: 36px 0; }
     .label {
       font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink);
@@ -170,6 +182,10 @@
       <div class="socials">
         <a href="https://github.com/cimeguy" target="_blank" rel="noopener">→ GitHub</a>
         <a href="mailto:you@example.com">→ Email</a>
+      </div>
+      <div class="about">
+        <p class="zh">本科与硕士毕业于<b>清华大学</b>，目前在互联网行业担任<b>算法工程师</b>，专注于机器学习与数据安全方向，喜欢把研究中的想法落地成好用的工具与产品。</p>
+        <p class="en">Graduated from <b>Tsinghua University</b>, now an <b>Algorithm Engineer</b> in the internet industry, focusing on machine learning and data security — and turning research ideas into tools and products that people actually use.</p>
       </div>
     </header>
 
