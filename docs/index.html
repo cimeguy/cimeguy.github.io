@@ -6,56 +6,131 @@
   <title>Li Gao · cimeguy</title>
   <style>
     :root {
-      --bg: #20222a;
-      --ink: #f1f2f5;
-      --muted: #a2a4ad;
-      --line: #34363f;
+      --bg: #16171c;
+      --bg2: #1c1e25;
+      --ink: #eef0f4;
+      --muted: #9296a3;
+      --line: #2c2e38;
       --accent: #ff7a1a;
-      --card: #292b34;
+      --accent2: #34e3c8;
+      --card: #1e2027;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      font-family: -apple-system, "PingFang SC", "Segoe UI", system-ui, sans-serif;
       color: var(--ink);
       background: var(--bg);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* 点阵网格 + 极光辉光背景 */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -2;
+      background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    body::after {
+      content: ""; position: fixed; z-index: -1;
+      width: 70vw; height: 70vw; max-width: 760px; max-height: 760px;
+      top: -22%; left: 50%; transform: translateX(-55%);
+      background: radial-gradient(circle at 30% 30%, rgba(255,122,26,.22), transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(52,227,200,.16), transparent 60%);
+      filter: blur(60px);
+      animation: drift 16s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      0%   { transform: translateX(-55%) translateY(0) rotate(0deg); }
+      100% { transform: translateX(-45%) translateY(40px) rotate(12deg); }
     }
     a { color: inherit; text-decoration: none; }
-
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 
     /* 顶部 */
-    header { padding: 120px 0 64px; }
+    header { padding: 116px 0 60px; }
     .avatar {
-      width: 96px; height: 96px; border-radius: 50%;
-      object-fit: cover; display: block; margin-bottom: 22px;
-      border: 1px solid var(--line); box-shadow: 0 0 0 4px rgba(255,122,26,.08);
+      width: 92px; height: 92px; border-radius: 50%;
+      object-fit: cover; display: block; margin-bottom: 24px;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 0 4px rgba(255,122,26,.12), 0 0 28px rgba(255,122,26,.25);
     }
-    .eyebrow { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-    header h1 { font-size: clamp(38px, 7vw, 60px); font-weight: 800; letter-spacing: -1px; margin: 14px 0 14px; }
-    header p { font-size: clamp(16px, 2.4vw, 19px); color: var(--muted); max-width: 540px; }
-    .socials { margin-top: 28px; display: flex; gap: 22px; flex-wrap: wrap; }
-    .socials a { font-size: 15px; color: var(--ink); border-bottom: 1.5px solid var(--line); padding-bottom: 2px; transition: border-color .15s, color .15s; }
-    .socials a:hover { color: var(--accent); border-color: var(--accent); }
+    .eyebrow {
+      font-family: var(--mono); font-size: 13px; color: var(--accent2);
+      letter-spacing: .5px; margin-bottom: 12px;
+    }
+    .eyebrow .blink { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    header h1 {
+      font-size: clamp(42px, 8vw, 68px); font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1.02; margin-bottom: 16px;
+      background: linear-gradient(100deg, #fff 0%, #ffd9b3 40%, var(--accent) 70%, var(--accent2) 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 7s linear infinite;
+    }
+    @keyframes shine { to { background-position: 220% center; } }
+    .tagline {
+      font-family: var(--mono); font-size: clamp(14px, 2.3vw, 17px);
+      color: var(--muted); max-width: 560px;
+    }
+    .tagline .cursor { color: var(--accent); animation: blink 1.1s steps(1) infinite; }
+    .socials { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .socials a {
+      font-family: var(--mono); font-size: 13px; color: var(--ink);
+      padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px;
+      transition: border-color .18s, color .18s, transform .18s, box-shadow .18s;
+    }
+    .socials a:hover {
+      color: var(--accent); border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255,122,26,.18);
+    }
 
-    section { padding: 40px 0; }
-    .label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+    section { padding: 36px 0; }
+    .label {
+      font-family: var(--mono); font-size: 13px; color: var(--muted);
+      margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+    }
+    .label::before { content: "//"; color: var(--accent); }
 
-    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
     .proj {
-      display: block; border: 1px solid var(--line); border-radius: 12px;
-      padding: 20px; background: var(--card);
-      transition: border-color .15s, transform .15s, box-shadow .15s;
+      position: relative; display: block; border: 1px solid var(--line); border-radius: 14px;
+      padding: 22px 22px 20px; background: linear-gradient(180deg, var(--card), var(--bg2));
+      overflow: hidden;
+      opacity: 0; transform: translateY(16px);
+      transition: border-color .2s, transform .25s ease, box-shadow .25s, opacity .5s ease;
     }
-    .proj:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
-    .proj .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-    .proj h3 { font-size: 16px; font-weight: 700; }
-    .proj .lang { font-size: 12px; color: var(--muted); white-space: nowrap; }
-    .proj p { font-size: 14px; color: var(--muted); margin-top: 8px; }
+    .proj.in { opacity: 1; transform: translateY(0); }
+    .proj::after {
+      content: ""; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
+      background: radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,122,26,.12), transparent 45%);
+      opacity: 0; transition: opacity .25s;
+    }
+    .proj:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
+    .proj:hover::after { opacity: 1; }
+    .idx { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
+    .proj .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 4px; }
+    .proj h3 { font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
+    .proj .lang {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; white-space: nowrap;
+    }
+    .proj p { font-size: 14px; color: var(--muted); margin-top: 9px; }
 
-    footer { padding: 56px 0 72px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); margin-top: 32px; }
+    footer {
+      font-family: var(--mono); padding: 52px 0 72px; color: var(--muted); font-size: 12.5px;
+      border-top: 1px solid var(--line); margin-top: 28px;
+    }
+    footer a { color: var(--accent); }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::after, header h1, .eyebrow .blink, .tagline .cursor { animation: none; }
+      .proj { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -63,75 +138,87 @@
 
     <header>
       <img class="avatar" src="https://github.com/cimeguy.png" alt="Li Gao" />
-      <p class="eyebrow">Hi, I'm</p>
+      <p class="eyebrow">$ whoami<span class="blink">_</span></p>
       <h1>Li Gao</h1>
-      <p>This time art, and this time for real.</p>
+      <p class="tagline">This time art, and this time for real.<span class="cursor">▍</span></p>
       <div class="socials">
-        <a href="https://github.com/cimeguy" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:you@example.com">Email</a>
+        <a href="https://github.com/cimeguy" target="_blank" rel="noopener">→ GitHub</a>
+        <a href="mailto:you@example.com">→ Email</a>
       </div>
     </header>
 
     <section>
-      <p class="label">Projects</p>
+      <p class="label">projects</p>
       <div class="grid">
 
         <a class="proj" href="https://github.com/cimeguy/DT-in-the-desktop" target="_blank" rel="noopener">
+          <span class="idx">[01]</span>
           <div class="top"><h3>DT-in-the-desktop</h3><span class="lang">JavaScript</span></div>
           <p>陶喆主题 macOS 桌面宠物：点击换图、随机播放音频、气泡台词，支持素材管理、人物抠图与缩放。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/ClipFlow" target="_blank" rel="noopener">
+          <span class="idx">[02]</span>
           <div class="top"><h3>ClipFlow</h3><span class="lang">macOS</span></div>
           <p>macOS 剪贴板历史管理器，支持 Markdown 导出与 BibTeX 检索。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/duplicate-tab-detector" target="_blank" rel="noopener">
+          <span class="idx">[03]</span>
           <div class="top"><h3>duplicate-tab-detector</h3><span class="lang">JavaScript</span></div>
           <p>自动检测并清理重复标签页的 Chrome 扩展。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
+          <span class="idx">[04]</span>
           <div class="top"><h3>cc-wexin-codex-plus</h3><span class="lang">TypeScript</span></div>
           <p>为 cc-wexin codex 增加会话重启与持久化能力的增强版。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/Wedjat" target="_blank" rel="noopener">
+          <span class="idx">[05]</span>
           <div class="top"><h3>Wedjat</h3><span class="lang">Jupyter</span></div>
           <p>面向规避攻击的鲁棒恶意流量检测方法。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/Simulation_and_VulnerabilityDetection__IndustrialControlSystem" target="_blank" rel="noopener">
+          <span class="idx">[06]</span>
           <div class="top"><h3>ICS 仿真与漏洞检测</h3><span class="lang">Python</span></div>
           <p>模拟 SCADA / Modbus 工控系统并进行漏洞检测。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/ML_for_ContentSecurity" target="_blank" rel="noopener">
+          <span class="idx">[07]</span>
           <div class="top"><h3>ML_for_ContentSecurity</h3><span class="lang">Python</span></div>
           <p>面向内容安全的 AI 工具集合。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/ML_for_Game-GoldenPoint" target="_blank" rel="noopener">
+          <span class="idx">[08]</span>
           <div class="top"><h3>Golden Point</h3><span class="lang">Python</span></div>
           <p>基于机器学习的多人黄金点博弈游戏。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/SpamFliter" target="_blank" rel="noopener">
+          <span class="idx">[09]</span>
           <div class="top"><h3>SpamFilter</h3><span class="lang">Python</span></div>
           <p>实现朴素贝叶斯、ID3 与 TF-IDF 的垃圾信息过滤。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/GradeSpider" target="_blank" rel="noopener">
+          <span class="idx">[10]</span>
           <div class="top"><h3>GradeSpider</h3><span class="lang">Python</span></div>
           <p>高校教务系统成绩爬虫。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/WebSite_CyperspaceSecurity" target="_blank" rel="noopener">
+          <span class="idx">[11]</span>
           <div class="top"><h3>网络空间安全学习平台</h3><span class="lang">PHP</span></div>
           <p>集论坛、在线考试与文件共享于一体的学习平台。</p>
         </a>
 
         <a class="proj" href="https://github.com/cimeguy/ExperimentsCodes_ProfessionalCourses" target="_blank" rel="noopener">
+          <span class="idx">[12]</span>
           <div class="top"><h3>专业课实验代码</h3><span class="lang">C++</span></div>
           <p>涵盖软件安全、数据结构与操作系统仿真等课程实验。</p>
         </a>
@@ -140,13 +227,34 @@
     </section>
 
     <footer>
-      © <span id="year"></span> Li Gao · <a href="https://github.com/cimeguy" target="_blank" rel="noopener" style="color:var(--accent)">github.com/cimeguy</a>
+      © <span id="year"></span> Li Gao · built with vanilla HTML · <a href="https://github.com/cimeguy" target="_blank" rel="noopener">github.com/cimeguy</a>
     </footer>
 
   </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 滚动渐显（带错位）
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en, i) {
+        if (en.isIntersecting) {
+          var el = en.target;
+          setTimeout(function () { el.classList.add('in'); }, (Array.prototype.indexOf.call(el.parentNode.children, el) % 2) * 70);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.proj').forEach(function (el) { io.observe(el); });
+
+    // 卡片跟随鼠标的辉光
+    document.querySelectorAll('.proj').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
   </script>
 </body>
 </html>
