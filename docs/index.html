@@ -100,17 +100,31 @@
     .proj {
       position: relative; display: block; border: 1px solid var(--line); border-radius: 14px;
       padding: 22px 22px 20px; background: linear-gradient(180deg, var(--card), var(--bg2));
-      overflow: hidden;
+      overflow: hidden; will-change: transform; transform-style: preserve-3d;
       opacity: 0; transform: translateY(16px);
-      transition: border-color .2s, transform .25s ease, box-shadow .25s, opacity .5s ease;
+      transition: border-color .2s, transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .25s, opacity .5s ease;
     }
     .proj.in { opacity: 1; transform: translateY(0); }
+    /* 顶部生长的强调线 */
+    .proj::before {
+      content: ""; position: absolute; top: 0; left: 0; height: 2px; width: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+    }
+    .proj:hover::before { transform: scaleX(1); }
+    /* 悬停滑入的箭头 */
+    .arrow {
+      position: absolute; top: 18px; right: 18px; font-family: var(--mono);
+      color: var(--accent); font-size: 15px; opacity: 0; transform: translate(-6px, 6px);
+      transition: opacity .25s, transform .25s;
+    }
+    .proj:hover .arrow { opacity: 1; transform: translate(0, 0); }
     .proj::after {
       content: ""; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
-      background: radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,122,26,.12), transparent 45%);
+      background: radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,138,51,.16), transparent 45%);
       opacity: 0; transition: opacity .25s;
     }
-    .proj:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
+    .proj:hover { border-color: var(--accent); box-shadow: 0 18px 38px rgba(0,0,0,.5); }
     .proj:hover::after { opacity: 1; }
     .idx { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
     .proj .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 4px; }
@@ -247,12 +261,26 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.proj').forEach(function (el) { io.observe(el); });
 
-    // 卡片跟随鼠标的辉光
+    // 卡片：注入箭头 + 鼠标辉光 + 3D 倾斜
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.proj').forEach(function (card) {
+      var a = document.createElement('span');
+      a.className = 'arrow'; a.textContent = '↗';
+      card.appendChild(a);
+
       card.addEventListener('mousemove', function (e) {
         var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        var px = e.clientX - r.left, py = e.clientY - r.top;
+        card.style.setProperty('--mx', px + 'px');
+        card.style.setProperty('--my', py + 'px');
+        if (reduce) return;
+        var rx = (0.5 - py / r.height) * 8;   // 上下倾斜
+        var ry = (px / r.width - 0.5) * 8;     // 左右倾斜
+        card.style.transform =
+          'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-5px) scale(1.015)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
       });
     });
   </script>
