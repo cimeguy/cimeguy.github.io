@@ -96,7 +96,11 @@
       font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink);
       letter-spacing: .3px; margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
     }
-    .label::before { content: "//"; color: var(--accent); font-size: 22px; }
+    .label::before {
+      content: ""; width: 4px; height: 20px; border-radius: 4px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 10px rgba(255,138,51,.45);
+    }
     .label .count { color: var(--accent2); font-size: 13px; font-weight: 600; }
     .group { margin-top: 48px; }
     .group:first-of-type { margin-top: 0; }
