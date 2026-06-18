@@ -164,6 +164,16 @@
     .lede b { color: var(--ink); font-weight: 600; }
     .lede .arc { color: var(--accent); }
 
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 36px; }
+    .stat {
+      border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 16px 14px; text-align: center;
+      background: linear-gradient(180deg, rgba(60,65,79,.5), rgba(43,47,58,.3));
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .stat .v { font-size: clamp(18px, 3vw, 24px); font-weight: 800; color: var(--accent); letter-spacing: -.5px; }
+    .stat .l { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 4px; }
+    @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
     .label {
       font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink);
       letter-spacing: .3px; margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
@@ -322,6 +332,13 @@
         一条从安全到智能的主线：<span class="arc">网络安全 → AI for 安全 → 大模型</span>。
         <b>下面是这条路上留下的一些项目。</b>
       </p>
+
+      <div class="stats" aria-label="关键信息">
+        <div class="stat"><div class="v">清华</div><div class="l">毕业院校</div></div>
+        <div class="stat"><div class="v">BIRD</div><div class="l">单模型榜上榜</div></div>
+        <div class="stat"><div class="v">11</div><div class="l">开源项目</div></div>
+        <div class="stat"><div class="v">3</div><div class="l">技术领域</div></div>
+      </div>
 
       <div class="group">
         <h2 class="label">tools &amp; apps <span class="count">(5)</span></h2>
