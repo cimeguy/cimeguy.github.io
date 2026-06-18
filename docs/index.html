@@ -28,6 +28,11 @@
 
     /* 顶部 */
     header { padding: 120px 0 64px; }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      object-fit: cover; display: block; margin-bottom: 22px;
+      border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
     .eyebrow { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 600; }
     header h1 { font-size: clamp(38px, 7vw, 60px); font-weight: 800; letter-spacing: -1px; margin: 14px 0 14px; }
     header p { font-size: clamp(16px, 2.4vw, 19px); color: var(--muted); max-width: 540px; }
@@ -57,6 +62,7 @@
   <div class="wrap">
 
     <header>
+      <img class="avatar" src="https://github.com/cimeguy.png" alt="Li Gao" />
       <p class="eyebrow">Hi, I'm</p>
       <h1>Li Gao</h1>
       <p>This time art, and this time for real.</p>
