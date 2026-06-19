@@ -271,7 +271,8 @@
     .proj:hover .dt-pet { transform: translateY(-2px) rotate(2deg); opacity: 1; }
 
     /* 大作：陶喆悬浮在卡片上 */
-    .proj.feature { grid-column: 1 / -1; overflow: visible; padding-right: 160px; }
+    #leisure .grid { grid-template-columns: 1fr 1fr; }
+    .proj.feature { overflow: visible; padding-right: 150px; }
     /* 外侧流动彩边（颜色绕卡片滚动） */
     .proj.feature::before {
       inset: -1.5px; left: -1.5px; right: -1.5px; top: -1.5px; height: auto;
@@ -343,7 +344,7 @@
     @media (max-width: 640px) {
       .wrap { padding: 0 22px; }
       header { padding: 84px 0 48px; }
-      .grid { grid-template-columns: 1fr; }
+      .grid, #leisure .grid { grid-template-columns: 1fr; }
     }
 
     @media (forced-colors: active) {
@@ -424,7 +425,7 @@
           </a>
           <a class="proj" href="https://cimeguy.github.io/QCQI-NielsenAndChuang-w-Skills/" target="_blank" rel="noopener">
             <span class="idx" aria-hidden="true">[02]</span>
-            <div class="top"><h3>QCQI 知识库</h3><span class="lang">Web</span></div>
+            <div class="top"><h3>QCQI 知识库网站（自建）</h3><span class="lang">Web</span></div>
             <p>把《量子计算与量子信息》学习笔记做成在线知识库网页，可浏览、检索与复习。</p>
           </a>
         </div>
