@@ -200,7 +200,21 @@
       box-shadow: 0 0 10px rgba(255,138,51,.45);
     }
     .label .count { color: var(--accent2); font-size: 13px; font-weight: 600; }
-    .group { margin-top: 48px; }
+    .group { margin-top: 48px; scroll-margin-top: 24px; }
+
+    /* 分组快捷导航按钮 */
+    .section-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .section-nav a {
+      font-family: var(--mono); font-size: 13px; color: var(--muted);
+      padding: 7px 15px; border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(60,65,79,.4);
+      transition: color .18s, border-color .18s, transform .18s, box-shadow .18s;
+    }
+    .section-nav a:hover {
+      color: var(--accent); border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255,138,51,.18);
+    }
+    .section-nav a .n { color: var(--accent2); font-weight: 600; }
 
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
     .proj {
@@ -381,7 +395,7 @@
 
       <div class="stats" aria-label="关键信息">
         <div class="stat"><div class="v">BIRD</div><div class="l">benchmark 上榜</div></div>
-        <div class="stat"><div class="v">11</div><div class="l">开源项目</div></div>
+        <div class="stat"><div class="v">13</div><div class="l">开源项目</div></div>
         <div class="stat"><div class="v">3</div><div class="l">技术领域</div></div>
       </div>
 
@@ -390,6 +404,14 @@
         <div class="tl-step"><div class="dot" aria-hidden="true"></div><span class="tag">02</span><h4>AI for 安全</h4><p>对抗样本下的鲁棒检测、面向内容安全的机器学习。</p></div>
         <div class="tl-step"><div class="dot" aria-hidden="true"></div><span class="tag">03</span><h4>大模型与推荐</h4><p>生成式推荐与 Text-to-SQL：JD-UNION-Text2sql-32B 上 BIRD 单模型榜。</p></div>
       </div>
+
+      <nav class="section-nav" aria-label="项目分组导航">
+        <a href="#leisure">闲来一作 <span class="n">1</span></a>
+        <a href="#tools">tools &amp; apps <span class="n">4</span></a>
+        <a href="#security">security <span class="n">4</span></a>
+        <a href="#ml">machine learning <span class="n">3</span></a>
+        <a href="#quantum">quantum <span class="n">1</span></a>
+      </nav>
 
       <div class="group" id="leisure">
         <h2 class="label">闲来一作 <span class="count">(1)</span></h2>
@@ -403,7 +425,7 @@
         </div>
       </div>
 
-      <div class="group">
+      <div class="group" id="tools">
         <h2 class="label">tools &amp; apps <span class="count">(4)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/cc-wexin-codex-plus" target="_blank" rel="noopener">
@@ -429,7 +451,7 @@
         </div>
       </div>
 
-      <div class="group">
+      <div class="group" id="security">
         <h2 class="label">security <span class="count">(4)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/Wedjat" target="_blank" rel="noopener">
@@ -455,7 +477,7 @@
         </div>
       </div>
 
-      <div class="group">
+      <div class="group" id="ml">
         <h2 class="label">machine learning <span class="count">(3)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/mmctr" target="_blank" rel="noopener">
@@ -476,7 +498,7 @@
         </div>
       </div>
 
-      <div class="group">
+      <div class="group" id="quantum">
         <h2 class="label">quantum <span class="count">(1)</span></h2>
         <div class="grid">
           <a class="proj" href="https://github.com/cimeguy/QCQI-NielsenAndChuang-w-Skills" target="_blank" rel="noopener">
